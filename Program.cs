@@ -11,7 +11,7 @@ class Program
         while (true)
         {
             Console.Write("Email: ");
-            string input = Console.ReadLine()?.Trim();
+            string input = Console.ReadLine()?.Trim()!;
 
             if (string.Equals(input, "done", StringComparison.OrdinalIgnoreCase))
                 break;
@@ -24,7 +24,16 @@ class Program
 
             string normalizedEmail = input.ToLower();
 
-            Console.WriteLine($"Normalized: {normalizedEmail}");
+            // Prevents duplicates naturally - no need to manually check .Contains()
+            if (uniqueEmails.Add(normalizedEmail))
+            {
+                Console.WriteLine($"Added: {normalizedEmail}\n");
+            }
+
+            else
+            {
+                Console.WriteLine($"Duplicate ignored: {normalizedEmail}\n");
+            }
         }
     }
 }
