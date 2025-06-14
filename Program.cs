@@ -35,5 +35,15 @@ class Program
                 Console.WriteLine($"Duplicate ignored: {normalizedEmail}\n");
             }
         }
+
+        Console.WriteLine("\nUnique email addresses (sorted):");
+
+        List<string> sortedEmails = [.. uniqueEmails];
+        sortedEmails.Sort();
+
+        foreach (var email in sortedEmails)
+        {
+            Console.WriteLine(email);
+        }
     }
 }
